@@ -8,11 +8,15 @@ This jar can be used to read pcap using hive
    hadoop fs -put test.pcap /pcaps/
  
 2. Enter to hive shell
-   hive > ADD JAR hadoop-pcap-serde-0.2-SNAPSHOT-jar-with-dependencies.jar;
-   hive> SET hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
-   hive> SET mapred.max.split.size=104857600;
-   hive> SET net.ripe.hadoop.pcap.io.reader.class=net.ripe.hadoop.pcap.DnsPcapReader;
-   hive> CREATE EXTERNAL TABLE pcaps (ts bigint,
+   hive> ADD JAR hadoop-pcap-serde-0.2-SNAPSHOT-jar-with-dependencies.jar;
+   
+	 hive> SET hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
+   
+	 hive> SET mapred.max.split.size=104857600;
+   
+	 hive> SET net.ripe.hadoop.pcap.io.reader.class=net.ripe.hadoop.pcap.DnsPcapReader;
+   
+	 hive> CREATE EXTERNAL TABLE pcaps (ts bigint,
                       protocol string,
                       src string,
                       src_port int,
